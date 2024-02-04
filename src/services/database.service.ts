@@ -39,7 +39,6 @@ export class DBService {
 
     // Initialize collections
     this.initCollections();
-    this.initOwnCollections();
   }
 
   private initCollections() {
@@ -68,10 +67,5 @@ export class DBService {
 
   protected getCollName(model: GenericModel): string {
     return container.resolveModel<GenericModel>(model).$collectionName;
-  }
-
-  protected initOwnCollections() {
-    // use this method to initialize your own collections
-    // ownCollections.yourCollection = this.dbInstance.collection<YourCollection>((<ModelClass>YourCollection).collectionName);
   }
 }
