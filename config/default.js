@@ -1,7 +1,6 @@
-// https://nodejs.org/api/esm.html#import-attributes
-import packageJson from '../package.json' with { type: 'json' };
+import { readFile } from 'fs/promises';
 
-const version = packageJson.version;
+const version = JSON.parse(await readFile(new URL('../package.json', import.meta.url))).version;
 
 export default {
     dbConfig: {
