@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { access } from 'fs/promises';
 import { fileURLToPath } from 'url';
 import { join, dirname } from 'path';
@@ -6,9 +7,6 @@ import { configInstance } from '../keys.js';
 
 export class ConfigService {
   private rootAppDir = '';
-  private defaultConfigPath = '';
-  private envConfigPath = '';
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private config: any = {};
   private isConfigLoaded = false;
   private static [configInstance]: ConfigService;
@@ -25,18 +23,53 @@ export class ConfigService {
   }
 
   async init() {
-    if (!this.isConfigLoaded) {
-      this.rootAppDir = await this.getRootAppDir();
-      this.defaultConfigPath = join(this.rootAppDir, 'config', 'default.js');
-      this.envConfigPath = join(this.rootAppDir, 'config', `${process.env.NODE_ENV || 'default'}.js`);
-
-      const defaultConfig = await this.loadConfigFile(this.defaultConfigPath);
-      const envConfig = await this.loadConfigFile(this.envConfigPath);
-
-      this.config = { ...defaultConfig, ...envConfig };
-      Object.freeze(this.config); // Make the config read-only
-      this.isConfigLoaded = true;
+    if (this.isConfigLoaded) {
+      return;
     }
+
+    this.rootAppDir = await this.getRootAppDir();
+    const defaultConfigPath = join(this.rootAppDir, 'config', 'default.js');
+    await this.checkConfigFileExists(defaultConfigPath, 'Default');
+
+    let envConfigPath = '';
+    if (process.env.NODE_ENV) {
+      envConfigPath = join(this.rootAppDir, 'config', `${process.env.NODE_ENV}.js`);
+      await this.checkConfigFileExists(envConfigPath, 'Environment', false);
+    }
+
+    const defaultConfig = await this.loadConfigFile(defaultConfigPath);
+    const envConfig = envConfigPath ? await this.loadConfigFile(envConfigPath) : {};
+
+    this.config = this.mergeConfigs(defaultConfig, envConfig);
+    Object.freeze(this.config); // Make the config read-only
+    this.isConfigLoaded = true;
+  }
+
+  private async checkConfigFileExists(filePath: string, configType: string, throwError = true) {
+    try {
+      await access(filePath);
+    } catch (error) {
+      if (throwError) {
+        throw new ConfigException(`${configType} config file not found: ${filePath}`);
+      }
+    }
+  }
+
+  private mergeConfigs(defaultConfig: any, overrideConfig: any) {
+    const mergedConfig = { ...defaultConfig };
+
+    // Loop through the keys in overrideConfig
+    for (const key in overrideConfig) {
+      if (typeof overrideConfig[key] === 'object' && key in defaultConfig) {
+        // Recursively merge nested objects
+        mergedConfig[key] = this.mergeConfigs(defaultConfig[key], overrideConfig[key]);
+      } else {
+        // Overwrite the property in the defaultConfig
+        mergedConfig[key] = overrideConfig[key];
+      }
+    }
+
+    return mergedConfig;
   }
 
   private async getRootAppDir(): Promise<string> {
