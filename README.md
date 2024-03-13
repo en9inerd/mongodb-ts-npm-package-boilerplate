@@ -63,7 +63,7 @@ The dependency injection container, represented by the Container class, manages 
 
 ### Config Service
 
-The ConfigService is a utility class designed to handle configuration loading and provide easy access to configuration values within your Node.js application. It allows you to organize and manage different configuration files based on the environment and provides a centralized way to access configuration properties that can be nested and deeply structured.
+The `ConfigService` is a utility class designed to handle configuration loading and provide easy access to configuration values within your Node.js application. It allows you to organize and manage different configuration files based on the environment and provides a centralized way to access configuration properties that can be nested and deeply structured.
 
 #### Configuration Files
 
