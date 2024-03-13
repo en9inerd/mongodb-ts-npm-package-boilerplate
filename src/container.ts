@@ -6,7 +6,6 @@ class Container {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private instances: Map<ClassType, Map<Constructor<any>, any>> = new Map([
     [ClassType.Service, new Map()],
-    [ClassType.Command, new Map()],
     [ClassType.Model, new Map()]
   ]);
 
