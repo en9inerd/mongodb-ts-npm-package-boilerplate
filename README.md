@@ -27,7 +27,7 @@ This boilerplate includes a simple Property Dependency Injection (PDI) based on 
 
 The `inject` and `injectable` decorators play a key role in facilitating Property Dependency Injection.
 
-`@inject<T>(serviceIdentifier: Constructor<T>)`
+#### `@inject<T>(serviceIdentifier: Constructor<T>)`
 
 This decorator is used to inject a specific service into a class property. It takes a service identifier, which is the constructor of the service to be injected. For example:
 
@@ -42,7 +42,7 @@ class MyClass {
 
 In this example, `MyService` is injected into the `myService` property of `MyClass`. The decorator also ensures that the injection only happens for class fields.
 
-`@injectable<Class extends Constructor<any>>`
+#### `@injectable<Class extends Constructor<any>>`
 
 This decorator is used to mark a class as injectable, allowing it to be registered in the dependency injection container. It ensures that instances of the class can be resolved and injected into other classes.
 
@@ -58,6 +58,8 @@ class MyService {
 Here, `MyService` is marked as injectable, allowing instances of this class to be injected into other classes using the `@inject` decorator.
 
 The dependency injection container, represented by the Container class, manages the registration and resolution of instances. It is an integral part of the Property Dependency Injection.
+
+---
 
 ### Config Service
 
@@ -82,6 +84,7 @@ const handlersCollection = config.get('dbConfig.collections.handlers', 'defaultH
 
 If the specified key is not found in the configuration, an optional default value can be provided. If no default value is provided and the key is not found, a `ConfigException` will be thrown.
 
+---
 
 ### Database Service
 
@@ -121,4 +124,4 @@ class DBService {
 }
 ```
 
-> `handler.model.ts` and `handler.service.ts` are provided as examples of how to use the `model` decorator and `DBService` class.
+> `handler.model.ts` and `handler.service.ts` that provided together with this boilerplate are examples of how to use the `model` decorator and `DBService` class.
