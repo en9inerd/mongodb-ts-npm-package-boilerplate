@@ -4,7 +4,7 @@ import { Constructor, HydratedModel } from './types.js';
 
 class Container {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private instances: Map<ClassType, Map<Constructor<any>, any>> = new Map([
+  private instances = new Map<ClassType, Map<Constructor<any>, any>>([
     [ClassType.Service, new Map()],
     [ClassType.Model, new Map()]
   ]);

@@ -114,7 +114,7 @@ export class ConfigService {
     }
   }
 
-  get<T>(key: string = '', defaultValue?: T): T {
+  get<T>(key = '', defaultValue?: T): T {
     if (!key) {
       return this.config;
     }

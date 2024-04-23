@@ -25,10 +25,10 @@ export type Handler = {
   event: {
     incoming?: boolean;
     outgoing?: boolean;
-    chats?: Array<string>;
+    chats?: string[];
     blacklistChats?: boolean;
-    fromUsers?: Array<string>;
-    blacklistUsers?: Array<string>;
+    fromUsers?: string[];
+    blacklistUsers?: string[];
     forwards?: boolean;
     pattern?: string | RegExp;
   };
