@@ -1,6 +1,6 @@
 export const configInstance = Symbol('configInstance');
 
 export enum ClassType {
-  Service,
-  Model,
+  Service = 0,
+  Model = 1,
 }

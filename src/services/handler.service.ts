@@ -1,8 +1,8 @@
-import { Handler as HandlerModel } from '../models/handler.model.js';
+import type { Handler as HandlerModel } from '../models/handler.model.js';
 import { collections } from './database.service.js';
 import { injectable } from '../decorators/index.js';
-import { DeleteResult, InsertOneResult } from 'mongodb';
-import { Handler } from '../types.js';
+import type { DeleteResult, InsertOneResult } from 'mongodb';
+import type { Handler } from '../types.js';
 
 @injectable
 export class HandlerService {

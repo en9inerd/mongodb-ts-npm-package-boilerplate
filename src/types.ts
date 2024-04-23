@@ -2,10 +2,10 @@ export type Dict<T = unknown> = Record<string, T>;
 
 export type HydratedModel<T> = T & Required<ModelParams>;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export type Constructor<T> = new (...args: any[]) => T;
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export type GenericModel = HydratedModel<any>;
 
 export type ModelParams = {

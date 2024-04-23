@@ -1,9 +1,9 @@
 import { DecoratorException } from '../exceptions.js';
 import { ClassType } from '../keys.js';
 import { container } from '../container.js';
-import { Constructor } from '../types.js';
+import type { Constructor } from '../types.js';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// biome-ignore lint/suspicious/noExplicitAny: <explanation>
 export function injectable<Class extends Constructor<any>>(
   target: Class,
   context: ClassDecoratorContext<Class>

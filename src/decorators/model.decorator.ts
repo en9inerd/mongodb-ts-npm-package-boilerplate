@@ -2,9 +2,10 @@
 import { DecoratorException } from '../exceptions.js';
 import { ClassType } from '../keys.js';
 import { container } from '../container.js';
-import { Constructor, ModelDecoratorParams } from '../types.js';
+import type { Constructor, ModelDecoratorParams } from '../types.js';
 import { addS } from '../utils.js';
 
+// biome-ignore lint/suspicious/noExplicitAny:
 export function model<Class extends Constructor<any>>(params?: ModelDecoratorParams) {
   return function (
     target: Class,

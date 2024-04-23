@@ -1,9 +1,9 @@
 import { StateException } from './exceptions.js';
 import { ClassType } from './keys.js';
-import { Constructor, HydratedModel } from './types.js';
+import type { Constructor, HydratedModel } from './types.js';
 
 class Container {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: <explanation>
   private instances = new Map<ClassType, Map<Constructor<any>, any>>([
     [ClassType.Service, new Map()],
     [ClassType.Model, new Map()]

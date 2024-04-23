@@ -1,9 +1,9 @@
-import { Collection, Db, MongoClient, MongoServerError } from 'mongodb';
+import { type Collection, type Db, MongoClient, type MongoServerError } from 'mongodb';
 import { Handler } from '../models/handler.model.js';
 import { injectable } from '../decorators/index.js';
 import { container } from '../container.js';
 import { ClassType } from '../keys.js';
-import { GenericModel } from '../types.js';
+import type { GenericModel } from '../types.js';
 import { config } from '../config.js';
 
 export const collections = {} as {
