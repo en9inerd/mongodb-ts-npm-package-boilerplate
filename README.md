@@ -15,7 +15,7 @@ It's based on the official [MongoDB and TypeScript sample project](https://githu
 - GitHub Actions Workflow for Building and Publishing to npm
 - ESM (ECMAScript Modules) Only
 - ES2022 Target
-- Preconfigured ESLint
+- Preconfigured Biome
 
 ## Usage
 

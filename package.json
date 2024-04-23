@@ -31,7 +31,7 @@
     }
   },
   "scripts": {
-    "lint": "eslint .",
+    "lint": "biome .",
     "build": "tsc --build",
     "clean": "tsc --build --clean",
     "build:watch": "tsc --build --watch",
